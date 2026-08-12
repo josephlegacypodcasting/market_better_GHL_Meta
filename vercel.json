@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/references/MBStudio_LandingPage.html" },
+    { "source": "/audit", "destination": "/references/MBStudio_Audit.html" },
+    { "source": "/audit.html", "destination": "/references/MBStudio_Audit.html" },
+    { "source": "/MBStudio_Audit.html", "destination": "/references/MBStudio_Audit.html" },
+    { "source": "/mb-studio-logo.svg", "destination": "/references/mb-studio-logo.svg" },
+    { "source": "/mb-studio-logo-dark.svg", "destination": "/references/mb-studio-logo-dark.svg" }
+  ]
+}

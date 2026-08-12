@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Is Webinar Sponsorship Right for Your Brand? — Market Better</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:       #f1eadf;
+      --cream-dark:  #e6ddcd;
+      --cream-mid:   #ece3d5;
+      --purple:      #5737ae;
+      --purple-light:#7a5cc9;
+      --coral:       #f44f2a;
+      --coral-dark:  #d63d1c;
+      --ink:         #161613;
+      --ink-soft:    #35342e;
+      --ink-muted:   #5f5f53;
+      --ink-faint:   #979283;
+      --white:       #fffdf9;
+      --border:      #d6cec2;
+    }
+
+    body {
+      font-family: 'Roboto', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 1.25rem 3rem 1.1rem;
+      background: var(--cream);
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-logo img {
+      height: 34px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-tag {
+      font-family: 'Roboto', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    /* ── Page wrap ── */
+    .page-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem 5rem;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 390px;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    /* ── Left column ── */
+    .eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--coral);
+    }
+
+    .headline {
+      font-family: 'Archivo', sans-serif;
+      font-size: 50px;
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.01em;
+    }
+
+    .headline em {
+      font-style: normal;
+      color: var(--purple);
+    }
+
+    .subheadline {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      margin-bottom: 2.5rem;
+      max-width: 440px;
+    }
+
+    /* ── Credential bar ── */
+    .credential-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 3rem;
+      background: var(--white);
+    }
+
+    .cred-item {
+      padding: 0.85rem 1.1rem;
+      border-right: 0.5px solid var(--border);
+    }
+
+    .cred-item:last-child { border-right: none; }
+
+    .cred-label {
+      display: block;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 4px;
+    }
+
+    .cred-value {
+      display: block;
+      font-family: 'Archivo', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      line-height: 1.35;
+    }
+
+    /* ── Checklist bullets (main content) ── */
+    .checklist-label {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 1.1rem;
+    }
+
+    .checklist-bullets {
+      margin-bottom: 3rem;
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 0.9rem;
+      font-size: 14.5px;
+      font-weight: 400;
+      color: var(--ink-soft);
+      line-height: 1.55;
+    }
+
+    .checklist-check {
+      width: 15px;
+      height: 15px;
+      border: 1.5px solid var(--purple-light);
+      border-radius: 4px;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    .checklist-more {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--ink-faint);
+      font-style: italic;
+      padding-left: 27px;
+      margin-top: 4px;
+    }
+
+    /* ── Platform byline ── */
+    .doctor-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-top: 2rem;
+      border-top: 0.5px solid var(--cream-dark);
+      margin-top: 2rem;
+    }
+
+    .doc-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      border: 0.5px solid var(--border);
+      background: var(--cream-mid);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .doc-avatar img {
+      width: 34px;
+      height: auto;
+    }
+
+    .doc-name {
+      font-family: 'Archivo', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+
+    .doc-title {
+      font-size: 11.5px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      line-height: 1.5;
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Right column: form ── */
+    .form-col {
+      position: sticky;
+      top: 2rem;
+    }
+
+    .form-card {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 2.25rem 2rem 2rem;
+      border: 0.5px solid var(--border);
+    }
+
+    .form-eyebrow {
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 0.6rem;
+    }
+
+    .form-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 25px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+      line-height: 1.25;
+    }
+
+    .form-subtitle {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      margin-bottom: 1.75rem;
+      line-height: 1.65;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 6px;
+    }
+
+    .form-row { margin-bottom: 1rem; }
+
+    .form-input {
+      width: 100%;
+      height: 44px;
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      padding: 0 1rem;
+      font-size: 14px;
+      font-weight: 400;
+      font-family: 'Roboto', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.15s, background 0.15s;
+    }
+
+    .form-input:focus {
+      border-color: var(--purple);
+      background: var(--white);
+    }
+
+    .form-input::placeholder {
+      color: var(--ink-faint);
+      font-weight: 400;
+    }
+
+    .cta-btn {
+      width: 100%;
+      height: 50px;
+      background: var(--coral);
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: background 0.15s, transform 0.1s;
+      margin-top: 0.25rem;
+    }
+
+    .cta-btn:hover { background: var(--coral-dark); }
+    .cta-btn:active { transform: scale(0.99); }
+
+    .cta-btn:disabled {
+      background: #f4a58f;
+      cursor: default;
+      transform: none;
+    }
+
+    .field-error {
+      display: none;
+      font-size: 11px;
+      font-weight: 400;
+      color: #b3381a;
+      margin-top: 5px;
+      line-height: 1.4;
+    }
+
+    .field-error.visible { display: block; }
+
+    .form-input.invalid { border-color: #b3381a; }
+
+    .consent-note {
+      font-size: 10.5px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      line-height: 1.6;
+      margin-top: 0.85rem;
+      text-align: center;
+    }
+
+    .form-status-error {
+      display: none;
+      font-size: 12px;
+      font-weight: 400;
+      color: #b3381a;
+      line-height: 1.55;
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    .form-status-error.visible { display: block; }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 1.5rem 0 0.75rem;
+    }
+
+    .form-success.visible { display: block; }
+
+    .form-success-icon {
+      width: 44px;
+      height: 44px;
+      margin: 0 auto 1rem;
+      border-radius: 50%;
+      border: 1.5px solid var(--purple);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form-success-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--purple);
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .form-success-text {
+      font-family: 'Archivo', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+
+    .trust-line {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 10.5px;
+      font-weight: 400;
+      color: var(--ink-faint);
+      margin-top: 0.85rem;
+      letter-spacing: 0.04em;
+    }
+
+    .trust-line svg {
+      width: 11px;
+      height: 11px;
+      stroke: var(--ink-faint);
+      stroke-width: 1.5;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .disclaimer {
+      margin-top: 1.5rem;
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--ink-faint);
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      text-align: center;
+      padding: 3rem 0 0;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--ink-faint);
+      letter-spacing: 0.05em;
+      border-top: 0.5px solid var(--border);
+      margin-top: 4rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 860px) {
+      .two-col { grid-template-columns: 1fr; }
+      .form-col { position: static; }
+      .headline { font-size: 38px; }
+      .nav { padding: 1rem 1.5rem; }
+    }
+
+    @media (max-width: 540px) {
+      .headline { font-size: 32px; }
+      .page-wrap { padding: 2.5rem 1.25rem 4rem; }
+      .credential-bar { grid-template-columns: 1fr; }
+      .cred-item { border-right: none; border-bottom: 0.5px solid var(--border); }
+      .cred-item:last-child { border-bottom: none; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <span class="nav-logo"><img src="market-better-logo.png" alt="Market Better" /></span>
+    <span class="nav-tag">B2B Webinar &amp; Content Platform</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <div class="two-col">
+
+      <!-- LEFT: hero content -->
+      <div>
+        <p class="eyebrow">Free checklist for B2B marketing &amp; revenue leaders</p>
+
+        <h1 class="headline">
+          Is Webinar Sponsorship<br>
+          Right for <em>Your Brand?</em>
+        </h1>
+
+        <p class="subheadline">
+          Before you commit budget to another sponsorship, know exactly what to ask, what to look for, and how to evaluate any B2B media platform you're considering. Download Market Better's step-by-step sponsorship evaluation checklist.
+        </p>
+
+        <p class="checklist-label">Inside the checklist</p>
+        <div class="checklist-bullets">
+          <div class="checklist-item">
+            <div class="checklist-check"></div>
+            Is registration genuinely opt-in, and can the platform prove it?
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-check"></div>
+            What's the real live attendance rate, not just the registration count?
+          </div>
+          <div class="checklist-item">
+            <div class="checklist-check"></div>
+            Will your brand be positioned as the solution, or just a logo on a slide?
+          </div>
+          <p class="checklist-more">+ 9 more questions every sponsor should ask before signing a media partnership...</p>
+        </div>
+
+        <div class="credential-bar">
+          <div class="cred-item">
+            <span class="cred-label">Reach</span>
+            <span class="cred-value">10,000+ marketers per show</span>
+          </div>
+          <div class="cred-item">
+            <span class="cred-label">Audience</span>
+            <span class="cred-value">Marketing &amp; revenue leaders</span>
+          </div>
+          <div class="cred-item">
+            <span class="cred-label">Profile</span>
+            <span class="cred-value">77% mid-market &amp; enterprise</span>
+          </div>
+        </div>
+
+        <div class="doctor-row">
+          <div class="doc-avatar"><img src="market-better-logo.png" alt="" /></div>
+          <div>
+            <p class="doc-name">Market Better</p>
+            <p class="doc-title">B2B Webinar &amp; Content Platform &nbsp;·&nbsp; Trusted by leading B2B brands<br>Opt-in audience of marketing &amp; revenue leaders &nbsp;·&nbsp; 73% from $10M&ndash;$1B revenue companies</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: form -->
+      <div class="form-col">
+        <div class="form-card">
+          <p class="form-eyebrow">Get the free checklist</p>
+          <h2 class="form-title">Make an informed decision before your next sponsorship.</h2>
+          <p class="form-subtitle">Enter your info below. We'll send it to your inbox — no sales call, no obligation.</p>
+
+          <form id="optin-form" novalidate>
+            <div class="form-row">
+              <label class="form-label" for="first-name">First name</label>
+              <input class="form-input" type="text" id="first-name" name="first_name" placeholder="Your first name" autocomplete="given-name" />
+              <p class="field-error" id="first-name-error">Please enter your first name.</p>
+            </div>
+            <div class="form-row">
+              <label class="form-label" for="last-name">Last name</label>
+              <input class="form-input" type="text" id="last-name" name="last_name" placeholder="Your last name" autocomplete="family-name" />
+              <p class="field-error" id="last-name-error">Please enter your last name.</p>
+            </div>
+            <div class="form-row">
+              <label class="form-label" for="email">Work email address</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" />
+              <p class="field-error" id="email-error">Please enter a valid email address.</p>
+            </div>
+            <div class="form-row">
+              <label class="form-label" for="company">Company <span style="text-transform:none; letter-spacing:0.02em; color: var(--ink-faint);">(optional)</span></label>
+              <input class="form-input" type="text" id="company" name="company" placeholder="Your company name" autocomplete="organization" />
+            </div>
+
+            <button class="cta-btn" type="submit" id="optin-submit">
+              Send me the checklist
+              &rarr;
+            </button>
+
+            <p class="consent-note">By submitting, you agree to receive email communication related to this resource from Market Better.</p>
+
+            <p class="form-status-error" id="optin-error">Something went wrong. Please try again in a moment.</p>
+
+            <p class="trust-line">
+              <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              No spam. Unsubscribe anytime.
+            </p>
+          </form>
+
+          <div class="form-success" id="optin-success" role="status">
+            <div class="form-success-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+            </div>
+            <p class="form-success-text">Thank you! Please check your inbox for the B2B Webinar Sponsorship Evaluation Checklist.</p>
+          </div>
+        </div>
+
+        <p class="disclaimer">
+          This checklist is for informational purposes only and does not guarantee sponsorship performance or results. Individual outcomes vary.<br>
+          &copy; Market Better. All rights reserved.
+        </p>
+      </div>
+
+    </div>
+
+    <footer class="page-footer">
+      Market Better &nbsp;&nbsp;·&nbsp;&nbsp; B2B Webinar &amp; Content Platform &nbsp;&nbsp;·&nbsp;&nbsp; marketbetter.xyz
+    </footer>
+
+  </div>
+
+  <script>
+    (function () {
+      var WEBHOOKS = [
+        { name: 'client', url: 'https://services.leadconnectorhq.com/hooks/uE8iQeezklYV7hJanEiE/webhook-trigger/a9f73de4-fc83-44fe-86ca-7f25775ecad6' }
+      ];
+
+      var form = document.getElementById('optin-form');
+      var firstNameInput = document.getElementById('first-name');
+      var lastNameInput = document.getElementById('last-name');
+      var emailInput = document.getElementById('email');
+      var companyInput = document.getElementById('company');
+      var submitBtn = document.getElementById('optin-submit');
+      var errorBox = document.getElementById('optin-error');
+      var successBox = document.getElementById('optin-success');
+      var submitting = false;
+
+      var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+      function setFieldError(input, hasError) {
+        input.classList.toggle('invalid', hasError);
+        var errorEl = document.getElementById(input.id + '-error');
+        if (errorEl) errorEl.classList.toggle('visible', hasError);
+      }
+
+      function validate() {
+        var firstNameOk = firstNameInput.value.trim().length > 0;
+        var lastNameOk = lastNameInput.value.trim().length > 0;
+        var emailOk = EMAIL_RE.test(emailInput.value.trim());
+        setFieldError(firstNameInput, !firstNameOk);
+        setFieldError(lastNameInput, !lastNameOk);
+        setFieldError(emailInput, !emailOk);
+        return firstNameOk && lastNameOk && emailOk;
+      }
+
+      [firstNameInput, lastNameInput, emailInput].forEach(function (input) {
+        input.addEventListener('input', function () { setFieldError(input, false); });
+      });
+
+      function buildPayload() {
+        return {
+          first_name: firstNameInput.value.trim(),
+          last_name: lastNameInput.value.trim(),
+          email: emailInput.value.trim(),
+          company: companyInput.value.trim(),
+          lead_source: 'Podcast',
+          source_channel: 'Podcast',
+          campaign_name: 'Market Better - Webinar Sponsorship Checklist',
+          lead_magnet: 'The B2B Webinar Sponsorship Evaluation Checklist',
+          landing_page_url: 'https://q3-2026-anna-ghl-mb-template.vercel.app',
+          form_name: 'MBIS - MB - Webinar Sponsorship Checklist Opt-In',
+          client_name: 'Market Better',
+          system_name: 'Market Better Inbound System',
+          system_id: 'MBIS',
+          consent: true,
+          consent_type: 'Email opt-in',
+          submitted_at: new Date().toISOString()
+        };
+      }
+
+      function postWebhook(webhook, body) {
+        return fetch(webhook.url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: body
+        }).then(function (res) {
+          if (!res.ok) throw new Error('HTTP ' + res.status);
+          return webhook.name;
+        });
+      }
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        if (submitting) return;
+        if (!validate()) return;
+
+        submitting = true;
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Sending…';
+        errorBox.classList.remove('visible');
+
+        var body = JSON.stringify(buildPayload());
+
+        Promise.allSettled(WEBHOOKS.map(function (w) { return postWebhook(w, body); }))
+          .then(function (results) {
+            var anySuccess = false;
+            results.forEach(function (result, i) {
+              if (result.status === 'fulfilled') {
+                anySuccess = true;
+              } else {
+                console.error('[opt-in] ' + WEBHOOKS[i].name + ' webhook failed:', result.reason);
+              }
+            });
+
+            if (anySuccess) {
+              sessionStorage.setItem('mbis_first_name', firstNameInput.value.trim());
+              sessionStorage.setItem('mbis_email', emailInput.value.trim());
+              form.style.display = 'none';
+              successBox.classList.add('visible');
+              // Funnel step 2: checklist page with sponsorship walkthrough CTA
+              setTimeout(function () { window.location.href = 'checklist.html'; }, 1500);
+            } else {
+              errorBox.classList.add('visible');
+              submitting = false;
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = 'Send me the checklist &rarr;';
+            }
+          });
+      });
+    })();
+  </script>
+
+</body>
+</html>

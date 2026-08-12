@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The B2B Webinar Sponsorship Evaluation Checklist — Market Better</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:       #f1eadf;
+      --cream-dark:  #e6ddcd;
+      --cream-mid:   #ece3d5;
+      --purple:      #5737ae;
+      --purple-light:#7a5cc9;
+      --coral:       #f44f2a;
+      --coral-dark:  #d63d1c;
+      --ink:         #161613;
+      --ink-soft:    #35342e;
+      --ink-muted:   #5f5f53;
+      --ink-faint:   #979283;
+      --white:       #fffdf9;
+      --border:      #d6cec2;
+    }
+
+    body {
+      font-family: 'Roboto', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Nav ── */
+    .nav {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 1.25rem 3rem 1.1rem;
+      background: var(--cream);
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .nav-logo { display: flex; align-items: center; }
+
+    .nav-logo img {
+      height: 34px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-tag {
+      font-family: 'Roboto', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    /* ── Page wrap ── */
+    .page-wrap {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 4rem 2rem 5rem;
+    }
+
+    .eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--coral);
+    }
+
+    .headline {
+      font-family: 'Archivo', sans-serif;
+      font-size: 44px;
+      font-weight: 800;
+      line-height: 1.14;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .intro {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      margin-bottom: 1.25rem;
+    }
+
+    .intro-note {
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      line-height: 1.7;
+      margin-bottom: 3rem;
+    }
+
+    /* ── Checklist ── */
+    .section-label {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink);
+      border-bottom: 0.5px solid var(--border);
+      padding-bottom: 0.7rem;
+      margin: 2.75rem 0 1.75rem;
+    }
+
+    .section-label .num { color: var(--coral); }
+
+    .q-item {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      margin-bottom: 2rem;
+    }
+
+    .q-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--purple);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .q-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.35;
+      margin-bottom: 6px;
+    }
+
+    .q-desc {
+      font-size: 13.5px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      line-height: 1.7;
+      max-width: 560px;
+    }
+
+    /* ── Closing note ── */
+    .closing {
+      margin-top: 3.5rem;
+      padding-top: 2.5rem;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .closing-text {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      margin-bottom: 1.5rem;
+    }
+
+    .closing-name {
+      font-family: 'Archivo', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 3px;
+    }
+
+    .closing-title {
+      font-size: 11.5px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Booking CTA ── */
+    .cta-card {
+      background: var(--white);
+      border: 0.5px solid var(--border);
+      border-radius: 12px;
+      padding: 2.5rem 2.25rem;
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .cta-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 0.75rem;
+    }
+
+    .cta-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.25;
+      margin-bottom: 0.75rem;
+    }
+
+    .cta-sub {
+      font-size: 13.5px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      line-height: 1.65;
+      max-width: 460px;
+      margin: 0 auto 1.75rem;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      height: 50px;
+      padding: 0 2.25rem;
+      background: var(--coral);
+      color: var(--white);
+      border: none;
+      border-radius: 10px;
+      font-family: 'Roboto', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .cta-btn:hover { background: var(--coral-dark); }
+    .cta-btn:active { transform: scale(0.99); }
+
+    .cta-contact {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--ink-muted);
+      line-height: 1.8;
+      margin-top: 1.5rem;
+    }
+
+    .cta-contact a { color: var(--ink-soft); text-decoration: none; }
+
+    .disclaimer {
+      margin-top: 2rem;
+      font-size: 10px;
+      font-weight: 400;
+      color: var(--ink-faint);
+      line-height: 1.7;
+      text-align: center;
+    }
+
+    /* ── Footer ── */
+    .page-footer {
+      text-align: center;
+      padding: 3rem 0 0;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--ink-faint);
+      letter-spacing: 0.05em;
+      border-top: 0.5px solid var(--border);
+      margin-top: 4rem;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .headline { font-size: 32px; }
+      .page-wrap { padding: 2.5rem 1.25rem 4rem; }
+      .nav { padding: 1rem 1.5rem; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav class="nav">
+    <span class="nav-logo"><img src="market-better-logo.png" alt="Market Better" /></span>
+    <span class="nav-tag">B2B Webinar &amp; Content Platform</span>
+  </nav>
+
+  <div class="page-wrap">
+
+    <p class="eyebrow">The B2B Webinar Sponsorship Evaluation Checklist</p>
+
+    <h1 class="headline">12 Questions to Ask<br>Before You Sponsor a Webinar</h1>
+
+    <p class="intro">
+      A media-buyer's guide to evaluating any B2B webinar or content platform with clarity, before you commit budget.
+    </p>
+
+    <p class="intro">
+      B2B sponsorship spend has grown quickly, and not every "opt-in audience" is created equal. Two platforms promising the same reach can differ enormously in who actually shows up, how honestly your brand is positioned, and how much real data you get back after the show. This checklist gives you twelve questions to bring into any sponsorship conversation, so you can evaluate a platform with clarity before signing a contract, and it draws directly on Market Better's own standards as a webinar platform built for marketing and revenue leaders.
+    </p>
+
+    <p class="intro-note">
+      Bring these twelve questions to any sponsorship conversation. A platform worth partnering with will welcome every one of them.
+    </p>
+
+    <!-- 01 -->
+    <p class="section-label"><span class="num">01</span> Audience Quality &amp; Reach</p>
+
+    <div class="q-item">
+      <span class="q-num">1</span>
+      <div>
+        <p class="q-title">Is registration genuinely opt-in, and can they prove attendees are your actual target buyers?</p>
+        <p class="q-desc">Reach numbers mean little if the audience isn't right. A reputable platform will document how registrants opt in and show you the audience's role, seniority, and industry mix before you commit.</p>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <span class="q-num">2</span>
+      <div>
+        <p class="q-title">What is the average and live attendance rate — not just the registration count?</p>
+        <p class="q-desc">A large registration list with a low show-up rate is a vanity metric. Ask for the actual live attendance rate across recent shows, not a one-time best-case example.</p>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <span class="q-num">3</span>
+      <div>
+        <p class="q-title">What percentage of the audience matches your ideal customer profile by company size and revenue?</p>
+        <p class="q-desc">Ask for a firmographic breakdown — company size, revenue band, and seniority — so you can confirm the audience actually overlaps with your buying committee before you invest.</p>
+      </div>
+    </div>
+
+    <!-- 02 -->
+    <p class="section-label"><span class="num">02</span> Positioning &amp; Content</p>
+
+    <div class="q-item">
+      <span class="q-num">4</span>
+      <div>
+        <p class="q-title">Will your brand be positioned as the solution, or just a logo on a slide?</p>
+        <p class="q-desc">The strongest sponsorships build the show's narrative around the problem your product solves. Ask specifically how your brand is worked into the content, not just where your logo appears.</p>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <span class="q-num">5</span>
+      <div>
+        <p class="q-title">Who writes and controls the content, and do you have input into the narrative?</p>
+        <p class="q-desc">Know upfront whether the platform will collaborate with you on the show's angle, or whether you're buying into a fixed format with no say in the story being told.</p>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <span class="q-num">6</span>
+      <div>
+        <p class="q-title">What does audience engagement actually look like during the show?</p>
+        <p class="q-desc">Ask about host-read mentions, branded polls, live Q&amp;A, and real-time interaction. Passive attendance is a very different experience from an audience actively engaging with your brand.</p>
+      </div>
+    </div>
+
+    <!-- 03 -->
+    <p class="section-label"><span class="num">03</span> Lead Delivery &amp; Sales Enablement</p>
+
+    <div class="q-item">
+      <span class="q-num">7</span>
+      <div>
+        <p class="q-title">What data do you receive after the show, and how quickly?</p>
+        <p class="q-desc">Ask exactly what lands in your inbox — a full lead dashboard with real-time access, or a delayed spreadsheet with limited fields.</p>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <span class="q-num">8</span>
+      <div>
+        <p class="q-title">Do you get raw contact details, or only aggregate analytics?</p>
+        <p class="q-desc">Aggregate charts are useful for reporting, but your sales team needs names, titles, companies, and engagement signals to actually follow up.</p>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <span class="q-num">9</span>
+      <div>
+        <p class="q-title">Is there a sales enablement kit you can put to work in outreach?</p>
+        <p class="q-desc">Ask whether the full recording, branded short-form clips, and other assets are included, and whether you're free to use them across social and sales outreach after the show.</p>
+      </div>
+    </div>
+
+    <!-- 04 -->
+    <p class="section-label"><span class="num">04</span> Investment &amp; Terms</p>
+
+    <div class="q-item">
+      <span class="q-num">10</span>
+      <div>
+        <p class="q-title">Is pricing transparent and tied to clearly defined deliverables?</p>
+        <p class="q-desc">You should receive a clear breakdown of what each sponsorship tier includes before you sign, not a verbal figure that shifts once you're in a contract.</p>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <span class="q-num">11</span>
+      <div>
+        <p class="q-title">What's included at each tier, and what could add cost later?</p>
+        <p class="q-desc">Ask directly whether email promotion, co-editorial input, or guest placement are part of the package, or whether they're billed separately as the partnership grows.</p>
+      </div>
+    </div>
+
+    <div class="q-item">
+      <span class="q-num">12</span>
+      <div>
+        <p class="q-title">Can you start with a single webinar, or are you locked into a long-term contract?</p>
+        <p class="q-desc">A platform confident in its results will let you prove the model with one show before asking for a bigger commitment. High-pressure, long-term-only terms are a signal to slow down.</p>
+      </div>
+    </div>
+
+    <!-- Closing note -->
+    <div class="closing">
+      <p class="closing-text">
+        We built Market Better around the belief that sponsors deserve straight answers, not just reach numbers. If you've been considering webinar sponsorship and want to talk through your specific goals, we'd be glad to walk through exactly how our platform works.
+      </p>
+      <p class="closing-name">The Market Better Team</p>
+      <p class="closing-title">B2B Webinar &amp; Content Platform</p>
+    </div>
+
+    <!-- Booking CTA -->
+    <div class="cta-card">
+      <p class="cta-eyebrow">Ready to talk it through?</p>
+      <h2 class="cta-title">Book a sponsorship walkthrough.</h2>
+      <p class="cta-sub">Bring your questions — every one of them. Choose a time that works for you and see exactly how our platform delivers reach, engagement, and leads.</p>
+      <button class="cta-btn" id="book-consultation-btn" type="button">
+        Book my sponsorship walkthrough
+        &rarr;
+      </button>
+      <p class="cta-contact">
+        Email <a href="mailto:sponsor@marketbetter.xyz">sponsor@marketbetter.xyz</a><br>
+        marketbetter.xyz
+      </p>
+    </div>
+
+    <p class="disclaimer">
+      This checklist is for informational purposes only and does not guarantee sponsorship performance or results. Individual outcomes vary.<br>
+      &copy; Market Better. All rights reserved.
+    </p>
+
+    <footer class="page-footer">
+      Market Better &nbsp;&nbsp;·&nbsp;&nbsp; B2B Webinar &amp; Content Platform &nbsp;&nbsp;·&nbsp;&nbsp; marketbetter.xyz
+    </footer>
+
+  </div>
+
+  <script>
+    (function () {
+      var CONSULT_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/uE8iQeezklYV7hJanEiE/webhook-trigger/cb4a54c4-508b-4071-8350-c3f657fbb175';
+      var CALENDAR_URL = 'https://api.leadconnectorhq.com/widget/booking/vJSj6VX7HHYfmAeL6dUI';
+
+      async function handleBookConsultationClick(event) {
+        if (event) event.preventDefault();
+
+        if (window.__mbisConsultationSubmitting) return;
+        window.__mbisConsultationSubmitting = true;
+
+        var button = event && event.currentTarget;
+        if (button) {
+          button.textContent = 'Opening Calendar...';
+          button.disabled = true;
+        }
+
+        var payload = {
+          event_type: 'consultation_intent_submitted',
+          first_name: sessionStorage.getItem('mbis_first_name') || '',
+          email: sessionStorage.getItem('mbis_email') || '',
+          lead_source: 'Podcast',
+          source_channel: 'Podcast',
+          campaign_name: 'Market Better - Webinar Sponsorship Checklist',
+          lead_magnet: 'The B2B Webinar Sponsorship Evaluation Checklist',
+          source_page: window.location.href,
+          cta_name: 'Book a Sponsorship Walkthrough',
+          cta_destination: CALENDAR_URL,
+          system_name: 'Market Better Inbound System',
+          system_id: 'MBIS',
+          submitted_at: new Date().toISOString()
+        };
+
+        try {
+          var response = await fetch(CONSULT_WEBHOOK_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          console.log('GHL consultation intent webhook status:', response.status);
+        } catch (error) {
+          console.error('GHL consultation intent webhook failed:', error);
+        } finally {
+          window.location.href = CALENDAR_URL;
+        }
+      }
+
+      var btn = document.getElementById('book-consultation-btn');
+      if (btn) btn.addEventListener('click', handleBookConsultationClick);
+    })();
+  </script>
+
+</body>
+</html>
