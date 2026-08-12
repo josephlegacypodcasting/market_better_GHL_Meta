@@ -86,12 +86,14 @@
     .nav-logo img {
       height: 26px;
       width: auto;
-      display: block;
     }
 
-    .logo-dark { display: none; }
+    /* Exactly one logo variant is visible per theme. Keep `display` out of the
+       rules above, or their higher specificity wins and both variants render. */
+    .logo-light { display: block; }
+    .logo-dark  { display: none; }
     :root[data-theme="dark"] .logo-light { display: none; }
-    :root[data-theme="dark"] .logo-dark { display: block; }
+    :root[data-theme="dark"] .logo-dark  { display: block; }
 
     .nav-tag {
       font-family: 'Roboto', sans-serif;
