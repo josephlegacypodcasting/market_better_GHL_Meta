@@ -151,6 +151,113 @@
 
     .closing-cta a:hover { background: var(--accent-dark); }
 
+    /* ── Stepped form ──
+       One question per screen. Steps are all in the DOM and toggled with a
+       class, so nothing re-renders and the browser keeps every answer. */
+    .step-meter { margin-bottom: 1.6rem; }
+
+    .step-meter-bar {
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .step-meter-bar span {
+      display: block;
+      height: 100%;
+      width: 0;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width 0.28s ease;
+    }
+
+    .step-meter-label {
+      margin-top: 0.6rem;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-faint);
+    }
+
+    .q-step { display: none; border: none; padding: 0; margin: 0; }
+    .q-step.active { display: block; }
+
+    .step-question {
+      font-family: 'Archivo', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.35;
+      margin-bottom: 1.25rem;
+      padding: 0;
+    }
+
+    .opt { display: block; margin-bottom: 0.6rem; cursor: pointer; }
+
+    /* The radio stays in the accessibility tree and keeps keyboard support;
+       the visible control is the span next to it. */
+    .opt input {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .opt span {
+      display: block;
+      padding: 0.95rem 1.1rem;
+      border: 0.5px solid var(--border);
+      border-radius: 9px;
+      background: var(--page);
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
+    }
+
+    .opt:hover span { border-color: var(--accent); color: var(--ink); }
+
+    .opt input:focus-visible + span {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-soft);
+    }
+
+    .opt input:checked + span {
+      border-color: var(--accent);
+      background: var(--card);
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    .step-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.35rem;
+    }
+
+    .step-nav .cta-btn { margin-top: 0; flex: 1; }
+
+    .back-btn {
+      height: 52px;
+      padding: 0 1.15rem;
+      border: 0.5px solid var(--border);
+      border-radius: 10px;
+      background: transparent;
+      color: var(--ink-muted);
+      font-family: 'Roboto', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 0.15s, color 0.15s;
+    }
+
+    .back-btn:hover { border-color: var(--accent); color: var(--accent); }
+
     /* ── Success state ── */
     .app-success { display: none; text-align: center; padding: 1rem 0; }
     .app-success.visible { display: block; }
@@ -248,109 +355,90 @@
 
         <form id="application-form" novalidate>
 
-          <div class="form-row">
-            <label class="form-label" for="business-type">Which of these best describes your business?</label>
-            <div class="select-wrap">
-              <select class="form-input" id="business-type" name="business_type" required>
-                <option value="">Select one…</option>
-                <option>Service business (healthcare, professional services, staffing, home services)</option>
-                <option>B2B software or AI company</option>
-                <option>Coaching, consulting, or advisory</option>
-                <option>Ecommerce or retail</option>
-                <option>Something else</option>
-              </select>
-            </div>
-            <p class="field-error" id="business-type-error">Please choose an option.</p>
+          <div class="step-meter">
+            <div class="step-meter-bar"><span id="progress-fill"></span></div>
+            <p class="step-meter-label" id="step-label">Question 1 of 5</p>
           </div>
 
-          <div class="form-row">
-            <label class="form-label" for="annual-revenue">What is your company's current annual revenue?</label>
-            <div class="select-wrap">
-              <select class="form-input" id="annual-revenue" name="annual_revenue" required>
-                <option value="">Select one…</option>
-                <option>Under $1M/year</option>
-                <option>$1M to $3M/year</option>
-                <option>$3M to $10M/year</option>
-                <option>$10M to $25M/year</option>
-                <option>$25M+/year</option>
-              </select>
-            </div>
-            <p class="field-error" id="annual-revenue-error">Please choose an option.</p>
-          </div>
+          <fieldset class="q-step" data-name="business_type">
+            <legend class="step-question">Which of these best describes your business?</legend>
+            <label class="opt"><input type="radio" name="business_type" value="Service business (healthcare, professional services, staffing, home services)" /><span>Service business (healthcare, professional services, staffing, home services)</span></label>
+            <label class="opt"><input type="radio" name="business_type" value="B2B software or AI company" /><span>B2B software or AI company</span></label>
+            <label class="opt"><input type="radio" name="business_type" value="Coaching, consulting, or advisory" /><span>Coaching, consulting, or advisory</span></label>
+            <label class="opt"><input type="radio" name="business_type" value="Ecommerce or retail" /><span>Ecommerce or retail</span></label>
+            <label class="opt"><input type="radio" name="business_type" value="Something else" /><span>Something else</span></label>
+          </fieldset>
 
-          <div class="form-row">
-            <label class="form-label" for="contract-value">What is the average value of a new client or contract for you?</label>
-            <div class="select-wrap">
-              <select class="form-input" id="contract-value" name="average_contract_value" required>
-                <option value="">Select one…</option>
-                <option>Under $5,000</option>
-                <option>$5,000 to $15,000</option>
-                <option>$15,000 to $25,000</option>
-                <option>$25,000 to $50,000</option>
-                <option>$50,000+</option>
-              </select>
-            </div>
-            <p class="field-error" id="contract-value-error">Please choose an option.</p>
-          </div>
+          <fieldset class="q-step" data-name="annual_revenue">
+            <legend class="step-question">What is your company's current annual revenue?</legend>
+            <label class="opt"><input type="radio" name="annual_revenue" value="Under $1M/year" /><span>Under $1M/year</span></label>
+            <label class="opt"><input type="radio" name="annual_revenue" value="$1M to $3M/year" /><span>$1M to $3M/year</span></label>
+            <label class="opt"><input type="radio" name="annual_revenue" value="$3M to $10M/year" /><span>$3M to $10M/year</span></label>
+            <label class="opt"><input type="radio" name="annual_revenue" value="$10M to $25M/year" /><span>$10M to $25M/year</span></label>
+            <label class="opt"><input type="radio" name="annual_revenue" value="$25M+/year" /><span>$25M+/year</span></label>
+          </fieldset>
 
-          <div class="form-row">
-            <label class="form-label" for="lead-source">What is generating most of your new business right now?</label>
-            <div class="select-wrap">
-              <select class="form-input" id="lead-source" name="primary_lead_source" required>
-                <option value="">Select one…</option>
-                <option>Paid ads</option>
-                <option>Outbound (email, LinkedIn, SDRs)</option>
-                <option>Referrals and word of mouth</option>
-                <option>We pay an agency for content and social</option>
-                <option>Nothing consistent</option>
-              </select>
-            </div>
-            <p class="field-error" id="lead-source-error">Please choose an option.</p>
-          </div>
+          <fieldset class="q-step" data-name="average_contract_value">
+            <legend class="step-question">What is the average value of a new client or contract for you?</legend>
+            <label class="opt"><input type="radio" name="average_contract_value" value="Under $5,000" /><span>Under $5,000</span></label>
+            <label class="opt"><input type="radio" name="average_contract_value" value="$5,000 to $15,000" /><span>$5,000 to $15,000</span></label>
+            <label class="opt"><input type="radio" name="average_contract_value" value="$15,000 to $25,000" /><span>$15,000 to $25,000</span></label>
+            <label class="opt"><input type="radio" name="average_contract_value" value="$25,000 to $50,000" /><span>$25,000 to $50,000</span></label>
+            <label class="opt"><input type="radio" name="average_contract_value" value="$50,000+" /><span>$50,000+</span></label>
+          </fieldset>
 
-          <div class="form-row">
-            <label class="form-label" for="on-camera">Are you or a leader at your company willing to be on camera for two hours per month?</label>
-            <div class="select-wrap">
-              <select class="form-input" id="on-camera" name="on_camera_willingness" required>
-                <option value="">Select one…</option>
-                <option>Yes, I'm ready to be the face of this</option>
-                <option>Yes, but it would be someone else on our leadership team</option>
-                <option>I'd need to understand it better first</option>
-                <option>No</option>
-              </select>
-            </div>
-            <p class="field-error" id="on-camera-error">Please choose an option.</p>
-          </div>
+          <fieldset class="q-step" data-name="primary_lead_source">
+            <legend class="step-question">What is generating most of your new business right now?</legend>
+            <label class="opt"><input type="radio" name="primary_lead_source" value="Paid ads" /><span>Paid ads</span></label>
+            <label class="opt"><input type="radio" name="primary_lead_source" value="Outbound (email, LinkedIn, SDRs)" /><span>Outbound (email, LinkedIn, SDRs)</span></label>
+            <label class="opt"><input type="radio" name="primary_lead_source" value="Referrals and word of mouth" /><span>Referrals and word of mouth</span></label>
+            <label class="opt"><input type="radio" name="primary_lead_source" value="We pay an agency for content and social" /><span>We pay an agency for content and social</span></label>
+            <label class="opt"><input type="radio" name="primary_lead_source" value="Nothing consistent" /><span>Nothing consistent</span></label>
+          </fieldset>
 
-          <div class="form-grid">
+          <fieldset class="q-step" data-name="on_camera_willingness">
+            <legend class="step-question">Are you or a leader at your company willing to be on camera for two hours per month?</legend>
+            <label class="opt"><input type="radio" name="on_camera_willingness" value="Yes, I'm ready to be the face of this" /><span>Yes, I'm ready to be the face of this</span></label>
+            <label class="opt"><input type="radio" name="on_camera_willingness" value="Yes, but it would be someone else on our leadership team" /><span>Yes, but it would be someone else on our leadership team</span></label>
+            <label class="opt"><input type="radio" name="on_camera_willingness" value="I'd need to understand it better first" /><span>I'd need to understand it better first</span></label>
+            <label class="opt"><input type="radio" name="on_camera_willingness" value="No" /><span>No</span></label>
+          </fieldset>
+          <div class="q-step" data-name="contact">
+            <p class="step-question">Last step &mdash; where should we send the details?</p>
+
+            <div class="form-grid">
+              <div class="form-row">
+                <label class="form-label" for="first-name">First name</label>
+                <input class="form-input" type="text" id="first-name" name="first_name" placeholder="Your first name" autocomplete="given-name" />
+                <p class="field-error" id="first-name-error">Please enter your first name.</p>
+              </div>
+              <div class="form-row">
+                <label class="form-label" for="last-name">Last name</label>
+                <input class="form-input" type="text" id="last-name" name="last_name" placeholder="Your last name" autocomplete="family-name" />
+                <p class="field-error" id="last-name-error">Please enter your last name.</p>
+              </div>
+            </div>
+
             <div class="form-row">
-              <label class="form-label" for="first-name">First name</label>
-              <input class="form-input" type="text" id="first-name" name="first_name" placeholder="Your first name" autocomplete="given-name" />
-              <p class="field-error" id="first-name-error">Please enter your first name.</p>
+              <label class="form-label" for="email">Work email address</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" />
+              <p class="field-error" id="email-error">Please enter a valid email address.</p>
             </div>
+
             <div class="form-row">
-              <label class="form-label" for="last-name">Last name</label>
-              <input class="form-input" type="text" id="last-name" name="last_name" placeholder="Your last name" autocomplete="family-name" />
-              <p class="field-error" id="last-name-error">Please enter your last name.</p>
+              <label class="form-label" for="phone">Phone number</label>
+              <input class="form-input" type="tel" id="phone" name="phone" placeholder="(555) 123-4567" autocomplete="tel" />
+              <p class="field-error" id="phone-error">Please enter a valid phone number.</p>
             </div>
           </div>
 
-          <div class="form-row">
-            <label class="form-label" for="email">Work email address</label>
-            <input class="form-input" type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" />
-            <p class="field-error" id="email-error">Please enter a valid email address.</p>
+          <div class="step-nav">
+            <button class="back-btn" type="button" id="back-btn" hidden>&larr; Back</button>
+            <button class="cta-btn" type="submit" id="application-submit" hidden>
+              Continue to booking
+              &rarr;
+            </button>
           </div>
-
-          <div class="form-row">
-            <label class="form-label" for="phone">Phone number</label>
-            <input class="form-input" type="tel" id="phone" name="phone" placeholder="(555) 123-4567" autocomplete="tel" />
-            <p class="field-error" id="phone-error">Please enter a valid phone number.</p>
-          </div>
-
-          <button class="cta-btn" type="submit" id="application-submit">
-            Continue to booking
-            &rarr;
-          </button>
 
           <p class="consent-note">By submitting, you agree to be contacted by Market Better by email, phone and text about your application.</p>
 
@@ -447,9 +535,18 @@
   <script>
     (function () {
       var form = document.getElementById('application-form');
+      var steps = Array.prototype.slice.call(form.querySelectorAll('.q-step'));
+      var meterFill = document.getElementById('progress-fill');
+      var meterLabel = document.getElementById('step-label');
+      var backBtn = document.getElementById('back-btn');
       var submitBtn = document.getElementById('application-submit');
       var errorBox = document.getElementById('application-error');
       var successBox = document.getElementById('application-success');
+      var card = form.closest('.form-card');
+
+      var QUESTION_COUNT = steps.length - 1;   // the last step collects contact details
+      var LAST = steps.length - 1;
+      var current = 0;
       var submitting = false;
 
       var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -457,13 +554,60 @@
       // Deliberately loose: the funnel takes international traffic and GHL
       // normalises the number on its side. Only obvious junk is rejected.
       function phoneOk(value) {
-        return (value.replace(/\D/g, '').length >= 7);
+        return value.replace(/\D/g, '').length >= 7;
       }
 
-      var SELECTS = ['business-type', 'annual-revenue', 'contract-value', 'lead-source', 'on-camera'];
-      var TEXTS = ['first-name', 'last-name', 'email', 'phone'];
-
       function el(id) { return document.getElementById(id); }
+
+      function answer(name) {
+        var picked = form.querySelector('input[name="' + name + '"]:checked');
+        return picked ? picked.value : '';
+      }
+
+      /* ── step navigation ── */
+
+      function render() {
+        steps.forEach(function (step, i) {
+          step.classList.toggle('active', i === current);
+        });
+
+        var onContact = current === LAST;
+
+        meterFill.style.width = Math.round((current / LAST) * 100) + '%';
+        meterLabel.textContent = onContact
+          ? 'Your details'
+          : 'Question ' + (current + 1) + ' of ' + QUESTION_COUNT;
+
+        backBtn.hidden = current === 0;
+        submitBtn.hidden = !onContact;
+
+        // Focus the first control of the step so keyboard and screen-reader
+        // users land on the question rather than back at the top of the page.
+        var first = steps[current].querySelector('input');
+        if (first && current > 0) first.focus({ preventScroll: true });
+      }
+
+      function goTo(index) {
+        current = Math.max(0, Math.min(LAST, index));
+        render();
+
+        // Keep the card in view: on a phone the answered option can otherwise
+        // leave the next question below the fold.
+        var top = card.getBoundingClientRect().top + window.pageYOffset - 80;
+        if (window.pageYOffset > top) window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+
+      // Choosing an option is the answer and the "next" in one tap. The short
+      // delay lets the selected state paint so the choice is visibly registered.
+      form.addEventListener('change', function (event) {
+        if (event.target.type !== 'radio') return;
+        if (current >= LAST) return;
+        setTimeout(function () { goTo(current + 1); }, 220);
+      });
+
+      backBtn.addEventListener('click', function () { goTo(current - 1); });
+
+      /* ── contact validation ── */
 
       function setFieldError(input, hasError) {
         input.classList.toggle('invalid', hasError);
@@ -471,48 +615,46 @@
         if (errorEl) errorEl.classList.toggle('visible', hasError);
       }
 
-      function validate() {
-        var ok = true;
-
-        SELECTS.forEach(function (id) {
-          var input = el(id);
-          var bad = !input.value;
-          setFieldError(input, bad);
-          if (bad) ok = false;
-        });
-
+      function validateContact() {
         var first = el('first-name');
         var last = el('last-name');
         var email = el('email');
         var phone = el('phone');
 
-        var firstBad = !first.value.trim();
-        var lastBad = !last.value.trim();
-        var emailBad = !EMAIL_RE.test(email.value.trim());
-        var phoneBad = !phoneOk(phone.value.trim());
+        var bad = {
+          first: !first.value.trim(),
+          last: !last.value.trim(),
+          email: !EMAIL_RE.test(email.value.trim()),
+          phone: !phoneOk(phone.value.trim())
+        };
 
-        setFieldError(first, firstBad);
-        setFieldError(last, lastBad);
-        setFieldError(email, emailBad);
-        setFieldError(phone, phoneBad);
+        setFieldError(first, bad.first);
+        setFieldError(last, bad.last);
+        setFieldError(email, bad.email);
+        setFieldError(phone, bad.phone);
 
-        if (firstBad || lastBad || emailBad || phoneBad) ok = false;
-        return ok;
+        return !(bad.first || bad.last || bad.email || bad.phone);
       }
 
-      SELECTS.concat(TEXTS).forEach(function (id) {
-        var input = el(id);
-        var event = input.tagName === 'SELECT' ? 'change' : 'input';
-        input.addEventListener(event, function () { setFieldError(input, false); });
+      ['first-name', 'last-name', 'email', 'phone'].forEach(function (id) {
+        el(id).addEventListener('input', function () { setFieldError(el(id), false); });
       });
+
+      /* ── submit ── */
 
       form.addEventListener('submit', function (event) {
         event.preventDefault();
         if (submitting) return;
 
-        if (!validate()) {
+        // A radio step cannot be skipped, but a stale session or an autofill
+        // quirk could still leave one blank. Jump back to the first gap.
+        for (var i = 0; i < LAST; i++) {
+          if (!answer(steps[i].dataset.name)) { goTo(i); return; }
+        }
+
+        if (!validateContact()) {
           var firstInvalid = form.querySelector('.invalid');
-          if (firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          if (firstInvalid) firstInvalid.focus();
           return;
         }
 
@@ -526,11 +668,11 @@
           last_name: el('last-name').value.trim(),
           email: el('email').value.trim(),
           phone: el('phone').value.trim(),
-          business_type: el('business-type').value,
-          annual_revenue: el('annual-revenue').value,
-          average_contract_value: el('contract-value').value,
-          primary_lead_source: el('lead-source').value,
-          on_camera_willingness: el('on-camera').value
+          business_type: answer('business_type'),
+          annual_revenue: answer('annual_revenue'),
+          average_contract_value: answer('average_contract_value'),
+          primary_lead_source: answer('primary_lead_source'),
+          on_camera_willingness: answer('on_camera_willingness')
         };
 
         var payload = MBFunnel.buildPayload(Object.assign({}, lead, {
@@ -557,6 +699,8 @@
             submitBtn.innerHTML = 'Continue to booking &rarr;';
           });
       });
+
+      render();
     })();
   </script>
 

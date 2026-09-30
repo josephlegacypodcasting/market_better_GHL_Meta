@@ -4,6 +4,11 @@
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* The `hidden` attribute is only `display: none` in the UA stylesheet, so any
+   author rule that sets `display` silently outranks it — .cta-btn's flex did
+   exactly that and kept the submit button on screen through every step. */
+[hidden] { display: none !important; }
+
 /* ── Light (default) ── */
 :root {
   --page:        #f4f3f0;
