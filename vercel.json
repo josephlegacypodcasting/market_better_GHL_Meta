@@ -1,9 +1,22 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/references/MBStudio_LandingPage.html" },
+    { "source": "/", "destination": "/references/MB_Application.html" },
+    { "source": "/apply", "destination": "/references/MB_Application.html" },
+    { "source": "/MB_Application.html", "destination": "/references/MB_Application.html" },
+
+    { "source": "/booking", "destination": "/references/MB_Booking.html" },
+    { "source": "/MB_Booking.html", "destination": "/references/MB_Booking.html" },
+
+    { "source": "/thank-you", "destination": "/references/MB_ThankYou.html" },
+    { "source": "/MB_ThankYou.html", "destination": "/references/MB_ThankYou.html" },
+
+    { "source": "/podcast", "destination": "/references/MBStudio_LandingPage.html" },
     { "source": "/audit", "destination": "/references/MBStudio_Audit.html" },
     { "source": "/audit.html", "destination": "/references/MBStudio_Audit.html" },
     { "source": "/MBStudio_Audit.html", "destination": "/references/MBStudio_Audit.html" },
+
+    { "source": "/mb-funnel.css", "destination": "/references/mb-funnel.css" },
+    { "source": "/mb-funnel.js", "destination": "/references/mb-funnel.js" },
     { "source": "/mb-studio-logo.svg", "destination": "/references/mb-studio-logo.svg" },
     { "source": "/mb-studio-logo-dark.svg", "destination": "/references/mb-studio-logo-dark.svg" }
   ]

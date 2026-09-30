@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>You're Booked — Market Better</title>
+  <meta name="robots" content="noindex" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script>
+    // Applied before first paint so the stored theme never flashes.
+    (function () {
+      try {
+        var stored = localStorage.getItem('mbs_theme');
+        if (stored === 'dark' || stored === 'light') {
+          document.documentElement.setAttribute('data-theme', stored);
+        }
+      } catch (e) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="mb-funnel.css" />
+  <style>
+    .hero { text-align: center; }
+    .headline { font-size: 40px; }
+
+    .confirm-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 0.45rem 0.95rem;
+      border-radius: 99px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 1.35rem;
+    }
+
+    .confirm-badge svg {
+      width: 13px;
+      height: 13px;
+      stroke: currentColor;
+      stroke-width: 2.4;
+      fill: none;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ── Video ── */
+    .video-shell {
+      max-width: 780px;
+      margin: 2.5rem auto 0;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 0.5px solid var(--border);
+      background: var(--card);
+    }
+
+    .video-ratio {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%;
+    }
+
+    .video-ratio > iframe,
+    .video-ratio > video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: #000;
+    }
+
+    /* Shown until the finished VSL is dropped into TY_VIDEO_URL below. */
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--page-alt);
+      border: 1.5px dashed var(--border);
+      border-radius: 12px;
+      color: var(--ink-faint);
+      text-align: center;
+      padding: 1.5rem;
+    }
+
+    .video-placeholder .label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--ink-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .video-placeholder .hint { font-size: 12px; line-height: 1.6; }
+
+    .video-caption {
+      text-align: center;
+      font-size: 12px;
+      color: var(--ink-faint);
+      margin-top: 0.9rem;
+      letter-spacing: 0.03em;
+    }
+
+    /* ── Steps ── */
+    .block { margin-top: 3.75rem; }
+
+    .block-heading {
+      font-family: 'Archivo', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--ink);
+      text-align: center;
+      margin-bottom: 1.85rem;
+      line-height: 1.25;
+    }
+
+    .todo {
+      max-width: 660px;
+      margin: 0 auto;
+      display: grid;
+      gap: 1.15rem;
+    }
+
+    .todo-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      background: var(--card);
+      border: 0.5px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.35rem;
+    }
+
+    .todo-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--structure);
+      color: var(--on-structure);
+      font-family: 'Archivo', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .todo-title {
+      font-family: 'Archivo', sans-serif;
+      font-size: 15.5px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.35rem;
+    }
+
+    .todo-body {
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--ink-soft);
+    }
+
+    /* ── Call details ── */
+    .detail-card {
+      max-width: 660px;
+      margin: 0 auto;
+      background: var(--card);
+      border: 0.5px solid var(--border);
+      border-radius: 12px;
+      padding: 1.85rem 1.75rem;
+    }
+
+    .detail-card p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: var(--ink-soft);
+      margin-bottom: 1rem;
+    }
+
+    .detail-card p:last-child { margin-bottom: 0; }
+    .detail-card strong { color: var(--ink); font-weight: 600; }
+
+    .numbers {
+      max-width: 660px;
+      margin: 1.5rem auto 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .number-item {
+      border-top: 2px solid var(--accent);
+      padding-top: 0.9rem;
+      font-size: 13.5px;
+      line-height: 1.65;
+      color: var(--ink-soft);
+    }
+
+    .number-label {
+      font-family: 'Archivo', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+
+    @media (max-width: 540px) {
+      .headline { font-size: 27px; }
+      .block-heading { font-size: 20px; }
+      .numbers { grid-template-columns: 1fr; }
+      .detail-card { padding: 1.4rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav">
+    <span class="nav-logo">
+      <img class="logo-light" src="mb-studio-logo.svg" alt="Market Better" />
+      <img class="logo-dark" src="mb-studio-logo-dark.svg" alt="" aria-hidden="true" />
+    </span>
+    <span class="nav-tag">The Content Funnel</span>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to dark theme">
+      <svg class="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24"><path d="M20 14.5A8.2 8.2 0 0 1 9.5 4a8.3 8.3 0 1 0 10.5 10.5z"/></svg>
+    </button>
+  </nav>
+
+  <div class="page-wrap">
+
+    <header class="hero narrow">
+      <span class="confirm-badge">
+        <svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+        Your call is booked
+      </span>
+
+      <h1 class="headline" id="ty-headline">Congratulations &mdash; you're on the calendar.</h1>
+
+      <p class="subheadline">
+        Before you close this page, give me two minutes. What's in this video is the difference between showing up to a good conversation and wasting both of our time.
+      </p>
+    </header>
+
+    <div class="video-shell">
+      <div class="video-ratio" id="video-slot">
+        <div class="video-placeholder">
+          <span class="label">Thank You video goes here</span>
+          <span class="hint">Set <code>TY_VIDEO_URL</code> at the bottom of this file to the finished VSL — an MP4 URL or a YouTube / Vimeo / Loom embed link.</span>
+        </div>
+      </div>
+    </div>
+    <p class="video-caption">Watch before your call &middot; about 2 minutes</p>
+
+    <!-- ── Three things to do now ── -->
+    <section class="block">
+      <h2 class="block-heading">Three quick things to do right now</h2>
+
+      <div class="todo">
+        <div class="todo-item">
+          <span class="todo-num">1</span>
+          <div>
+            <p class="todo-title">Accept the calendar invite</p>
+            <p class="todo-body">It should already be in your inbox. If it isn't there in the next few minutes, check your spam folder — that's usually where it hides.</p>
+          </div>
+        </div>
+
+        <div class="todo-item">
+          <span class="todo-num">2</span>
+          <div>
+            <p class="todo-title">Save the number that texts you</p>
+            <p class="todo-body">We'll send a reminder before the call, and we'd rather it come from a name you recognise than an unknown number you ignore.</p>
+          </div>
+        </div>
+
+        <div class="todo-item">
+          <span class="todo-num">3</span>
+          <div>
+            <p class="todo-title">Bring whoever else weighs in on the decision</p>
+            <p class="todo-body">A partner, a co-founder, whoever it is. Not to qualify you — because a great conversation never survives being re-explained secondhand to someone who wasn't there. Bring them and we'll make it worth your time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── What the call is ── -->
+    <section class="block">
+      <h2 class="block-heading">What the call actually is</h2>
+
+      <div class="detail-card">
+        <p>
+          It's about <strong>30 to 45 minutes</strong>, and it is not a pitch. Our team is going to ask you real questions about your business. How you're getting clients today. What you've already tried. What it's costing you. What happens if nothing changes over the next twelve months.
+        </p>
+        <p>
+          Then we'll walk you through exactly how <strong>The Content Funnel</strong> works and what building it into your business would look like specifically.
+        </p>
+        <p>
+          And if it's not a fit, we'll tell you that on the call. We'd rather say so directly than sell you something that isn't going to work. You'll still walk away knowing more about your business, content and numbers than you did going in.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── Two numbers ── -->
+    <section class="block">
+      <h2 class="block-heading">Have these two numbers ready</h2>
+
+      <div class="numbers">
+        <div class="number-item">
+          <p class="number-label">Number one</p>
+          Roughly what you're spending on marketing and sales every month right now, and what it produced last quarter. Ballpark is fine.
+        </div>
+        <div class="number-item">
+          <p class="number-label">Number two</p>
+          What a new client is worth to you, and how many more you could realistically take on without breaking anything.
+        </div>
+      </div>
+
+      <p class="video-caption" style="margin-top: 1.5rem;">
+        With those two numbers we can tell you in about ten minutes whether the math works. Without them, we'd just be guessing.
+      </p>
+    </section>
+
+    <footer class="page-footer">
+      Market Better &nbsp;&nbsp;·&nbsp;&nbsp; The Content Funnel &nbsp;&nbsp;·&nbsp;&nbsp; marketbetter.xyz
+    </footer>
+
+  </div>
+
+  <script src="mb-funnel.js"></script>
+  <script>
+    (function () {
+      /* Drop the finished Thank You video here. Either a direct .mp4/.webm URL
+         or an embed link (YouTube, Vimeo, Loom) — both are handled below. */
+      var TY_VIDEO_URL = '';
+
+      var lead = MBFunnel.getLead();
+
+      if (lead.first_name) {
+        document.getElementById('ty-headline').textContent =
+          'Congratulations, ' + lead.first_name + " — you're on the calendar.";
+      }
+
+      /* Schedule only fires for a visitor who actually booked: either the
+         booking page saw the confirmation, or GHL's calendar redirected here
+         with ?booked=1. Firing it on every page view would poison the very
+         signal the campaign optimises against. */
+      if (MBFunnel.hasBooked()) {
+        MBFunnel.track('Schedule');
+      }
+
+      if (TY_VIDEO_URL) {
+        var slot = document.getElementById('video-slot');
+        var isFile = /\.(mp4|webm|mov)(\?|$)/i.test(TY_VIDEO_URL);
+
+        if (isFile) {
+          var video = document.createElement('video');
+          video.src = TY_VIDEO_URL;
+          video.controls = true;
+          video.playsInline = true;
+          video.preload = 'metadata';
+          slot.innerHTML = '';
+          slot.appendChild(video);
+        } else {
+          var iframe = document.createElement('iframe');
+          iframe.src = TY_VIDEO_URL;
+          iframe.title = 'Market Better — before your call';
+          iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; picture-in-picture';
+          iframe.allowFullscreen = true;
+          slot.innerHTML = '';
+          slot.appendChild(iframe);
+        }
+      }
+    })();
+  </script>
+
+</body>
+</html>
