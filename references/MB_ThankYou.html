@@ -340,9 +340,13 @@
   <script src="mb-funnel.js"></script>
   <script>
     (function () {
-      /* Drop the finished Thank You video here. Either a direct .mp4/.webm URL
-         or an embed link (YouTube, Vimeo, Loom) — both are handled below. */
-      var TY_VIDEO_URL = '';
+      /* The finished Thank You video. Either a direct .mp4/.webm URL or an
+         embed link (YouTube, Vimeo, Loom) — both are handled below.
+         Encoded from the camera master at 720p / ~1.2 Mbps with the moov atom
+         moved to the front, so playback starts before the file finishes
+         downloading. Captions are burned into the picture. */
+      var TY_VIDEO_URL = 'assets/ty-video.mp4';
+      var TY_VIDEO_POSTER = 'assets/ty-poster.jpg';
 
       var lead = MBFunnel.getLead();
 
@@ -368,7 +372,10 @@
           video.src = TY_VIDEO_URL;
           video.controls = true;
           video.playsInline = true;
+          // metadata only: the page is reached right after booking, and nobody
+          // should pay for 24MB before deciding to press play.
           video.preload = 'metadata';
+          if (TY_VIDEO_POSTER) video.poster = TY_VIDEO_POSTER;
           slot.innerHTML = '';
           slot.appendChild(video);
         } else {

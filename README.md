@@ -60,14 +60,37 @@ utm_source=fb_ad&utm_medium={{adset.name}}&utm_campaign={{campaign.name}}&utm_co
 them on the booking and thank-you pages, which have no query string of their own. `utm_content`
 carries the ad name (`H1 - …` / `H2 - …`) — that's what tells us which hook is winning.
 
+## Video
+
+The Thank You page serves `references/assets/ty-video.mp4` with
+`references/assets/ty-poster.jpg` as its poster frame.
+
+It is encoded from the camera master (`MIKE MCGRATH - TY VIDEO.mp4`, 720p at 12 Mbps, 235 MB)
+down to 720p at ~1.2 Mbps, 24 MB — same resolution and duration, 90% smaller. The moov atom is
+moved to the front so playback starts before the file finishes downloading, and the page uses
+`preload="metadata"` so nobody pays for 24 MB before pressing play. Captions are burned into the
+picture by the editor.
+
+To re-encode after a new cut:
+
+```bash
+ffmpeg -i "path/to/master.mp4" \
+  -c:v libx264 -preset slow -crf 24 -profile:v high -pix_fmt yuv420p \
+  -movflags +faststart -c:a aac -b:a 128k -ac 2 -sn \
+  references/assets/ty-video.mp4
+```
+
+The raw camera masters live in `reference-market-better/assets/videos/` and are git-ignored —
+GitHub rejects files over 100 MB. The two ad masters there (`AD 1B`, `AD 2B`, both 1080x1350 as
+the campaign checklist requires) are uploaded straight to Meta and never served from this site.
+
 ## Before launch
 
-Three values are intentionally left empty and must be filled in:
+Two values are intentionally left empty and must be filled in:
 
 | What | Where |
 |---|---|
 | Meta pixel id | `META_PIXEL_ID` in `references/mb-funnel.js` |
-| Thank You video URL | `TY_VIDEO_URL` at the bottom of `references/MB_ThankYou.html` |
 | Calendar booking redirect | In GHL: calendar → on booking confirmation → `https://<domain>/thank-you?booked=1` |
 
 An empty pixel id makes every `track()` call a no-op, so nothing fires at a pixel that doesn't

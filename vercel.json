@@ -15,6 +15,7 @@
     { "source": "/audit.html", "destination": "/references/MBStudio_Audit.html" },
     { "source": "/MBStudio_Audit.html", "destination": "/references/MBStudio_Audit.html" },
 
+    { "source": "/assets/:path*", "destination": "/references/assets/:path*" },
     { "source": "/mb-funnel.css", "destination": "/references/mb-funnel.css" },
     { "source": "/mb-funnel.js", "destination": "/references/mb-funnel.js" },
     { "source": "/mb-studio-logo.svg", "destination": "/references/mb-studio-logo.svg" },

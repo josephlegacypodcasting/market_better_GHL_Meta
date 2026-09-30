@@ -1,3 +1,9 @@
 .vercel
 .env*
 .claude/settings.local.json
+
+# Raw camera masters (600MB+ each). GitHub rejects files over 100MB, so these
+# stay local. The web encode of the Thank You video is committed at
+# references/assets/ty-video.mp4; the two ad masters are uploaded to Meta,
+# not served from this site.
+reference-market-better/assets/videos/
