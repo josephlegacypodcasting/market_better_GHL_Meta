@@ -12,10 +12,10 @@
   var UTM_KEY    = 'mb_utm';
   var BOOKED_KEY = 'mb_booked';
 
-  /* Meta pixel id. Empty on purpose until the dataset exists in Business
-     Manager — an empty id makes every track() call a silent no-op rather than
-     firing events at a pixel that is not there. */
-  var META_PIXEL_ID = '';
+  /* Meta pixel id. Leaving this empty makes every track() call a silent no-op,
+     which is what we want before the dataset exists. The campaign's conversion
+     event in Ads Manager is "Submit Application", fired from the booking page. */
+  var META_PIXEL_ID = '2111555462783713';
 
   /* Both GHL webhooks. The application posts to the first, a confirmed booking
      to the second. Same endpoints the Studio funnel uses; the payload's
@@ -189,16 +189,18 @@
 
   /* ── boot ── */
 
-  function init() {
-    initTheme();
-    captureUtms();
-    initPixel();
-  }
+  /* The pixel and the attribution store have to be live before each page's own
+     script runs, and that happens while the document is still parsing — earlier
+     than DOMContentLoaded. Deferring them would leave fbq undefined when the
+     booking page fires SubmitApplication, and track() would drop it silently.
+     Neither needs the DOM, so both run now; only the theme toggle waits. */
+  captureUtms();
+  initPixel();
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', initTheme);
   } else {
-    init();
+    initTheme();
   }
 
   global.MBFunnel = {
