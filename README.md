@@ -117,9 +117,27 @@ Light is the default. The nav toggle switches to dark and persists the choice in
 under `mbs_theme`, shared across every page. The stored theme is applied in a `<head>` script
 before first paint, so there is no flash.
 
-Brand orange `#f54e29` is the single accent in both themes, brightened to `#ff6440` on dark for
-contrast. The logo ships in two variants — `mb-studio-logo.svg` and `mb-studio-logo-dark.svg` —
-swapped by CSS, not JS.
+Brand orange `#f54e29` is the accent in both themes, brightened to `#ff6440` on dark for contrast.
+Purple `#432ead` — the brand theme's `--primary` — is the structural colour.
+
+The logo is the Market Better wordmark, in two variants swapped by CSS rather than JS:
+`mb-logo.png` and `mb-logo-dark.png`, both built from the same source with only the RGB channels
+recoloured so the antialiased edges survive. It is stacked ("market" over "better."), so the nav
+gives it 42px rather than the 26px a single-line lockup would take.
+
+**Market Better Studio has been retired as a brand.** The Studio lockup is gone from this funnel.
+The two legacy pages at `/podcast` and `/audit` still carry it and still reference
+`mb-studio-logo.svg`.
+
+### The testimonial band
+
+`.band` is lifted out of `.page-wrap` in the markup so it reaches both edges without `100vw`
+maths — `100vw` counts the scrollbar that the content area does not, which is worth 8px of
+horizontal scroll on desktop.
+
+Its purple panel and cream cards are fixed in both themes (`--band`, `--band-card`, `--band-ink`).
+It reads as a printed panel rather than a surface that follows the page, which is how the brand
+theme uses it.
 
 ## Local preview
 

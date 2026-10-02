@@ -17,8 +17,16 @@
   --accent:      #f54e29;
   --accent-dark: #d63d1c;
   --accent-soft: #f9a893;
-  --structure:   #2c2c28;
-  --on-structure:#f4f3f0;
+  /* Market Better's structural colour, from the brand theme's
+     --primary: hsl(250 58% 43%). */
+  --structure:   #432ead;
+  --on-structure:#ffffff;
+  /* The testimonial band keeps the same purple and cream in both themes:
+     it is a printed-looking panel, not a surface that follows the page. */
+  --band:        #432ead;
+  --band-card:   #efeadc;
+  --band-ink:    #17161a;
+  --band-muted:  #5f5c66;
   --ink:         #14140f;
   --ink-soft:    #35342e;
   --ink-muted:   #5f5f53;
@@ -35,8 +43,12 @@
   --accent:      #ff6440;
   --accent-dark: #f54e29;
   --accent-soft: #7a3928;
-  --structure:   #f2ede4;
+  --structure:   #8f78e8;
   --on-structure:#14140f;
+  --band:        #2e2078;
+  --band-card:   #efeadc;
+  --band-ink:    #17161a;
+  --band-muted:  #5f5c66;
   --ink:         #f2ede4;
   --ink-soft:    #d8d2c6;
   --ink-muted:   #a29c8e;
@@ -69,8 +81,10 @@ body {
 
 .nav-logo { display: flex; align-items: center; }
 
+/* The wordmark is stacked ("market" over "better."), so it needs roughly
+   twice the height a single-line lockup would to stay readable. */
 .nav-logo img {
-  height: 26px;
+  height: 42px;
   width: auto;
 }
 
@@ -394,6 +408,113 @@ select.form-input option[value=""] { color: var(--ink-faint); }
   text-align: center;
 }
 
+/* ── Testimonial band ──
+   Lifted from the Market Better brand theme: purple panel, cream cards,
+   the heading's full stop in the accent colour. Full-bleed, so it breaks
+   out of .page-wrap's max width. */
+.band {
+  background: var(--band);
+  color: #fff;
+  padding: 4.5rem 0;
+  margin-top: 4.5rem;
+}
+
+.band-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.band-heading {
+  font-family: 'Archivo', sans-serif;
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.015em;
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.band-heading span { color: var(--accent); }
+
+.quotes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.quote-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--band-card);
+  color: var(--band-ink);
+  border-radius: 8px;
+  padding: 1.75rem 1.6rem;
+}
+
+.quote-mark {
+  width: 26px;
+  height: 26px;
+  margin-bottom: 1rem;
+  stroke: var(--accent);
+  stroke-width: 2.5;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
+}
+
+.quote-text {
+  font-family: 'Archivo', sans-serif;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.4;
+  margin-bottom: 1.5rem;
+  flex: 1;
+}
+
+.quote-avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 1px solid var(--band);
+  object-fit: cover;
+  display: block;
+  margin-bottom: 0.7rem;
+}
+
+.quote-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--band-ink);
+}
+
+.quote-title {
+  font-size: 12.5px;
+  color: var(--band-muted);
+  margin-bottom: 1.25rem;
+}
+
+.quote-logo {
+  margin-top: auto;
+  height: 34px;
+  max-width: 155px;
+  object-fit: contain;
+  object-position: left;
+}
+
+@media (max-width: 860px) {
+  .band-heading { font-size: 30px; }
+  .quotes { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 540px) {
+  .band { padding: 3rem 0; margin-top: 3rem; }
+  .band-inner { padding: 0 1.25rem; }
+  .band-heading { font-size: 25px; margin-bottom: 2rem; }
+}
+
 /* ── Footer ── */
 .page-footer {
   text-align: center;
@@ -420,6 +541,6 @@ select.form-input option[value=""] { color: var(--ink-faint); }
   .credential-bar { grid-template-columns: 1fr; }
   .cred-item { border-right: none; border-bottom: 0.5px solid var(--border); }
   .cred-item:last-child { border-bottom: none; }
-  .nav-logo img { height: 22px; }
+  .nav-logo img { height: 34px; }
   .theme-toggle { right: 0.75rem; width: 30px; height: 30px; }
 }
