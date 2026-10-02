@@ -54,4 +54,4 @@ co-founder — bring them with you.
 | Max bookings per day | 2 | Matches the two slots Jake asked Mike to open. |
 | Assigned user | Mike | He takes the first calls himself to validate the process before hiring a closer. |
 | Video app | Zoom or Google Meet | Needed for the invite to carry a join link. |
-| On booking confirmation | Redirect to `https://market-better-ghl-meta.vercel.app/thank-you?booked=1` | Configured. This is what makes the `Schedule` pixel event fire on real traffic. |
+| On booking confirmation | Redirect to `https://mbgrowth.marketbetter.xyz/thank-you?booked=1` | **Needs updating** — it was set to the old `mbstudio` domain, which no longer resolves. Without it `Schedule` never fires on real traffic. |

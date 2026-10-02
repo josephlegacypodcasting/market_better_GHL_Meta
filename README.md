@@ -84,18 +84,27 @@ The raw camera masters live in `reference-market-better/assets/videos/` and are 
 GitHub rejects files over 100 MB. The two ad masters there (`AD 1B`, `AD 2B`, both 1080x1350 as
 the campaign checklist requires) are uploaded straight to Meta and never served from this site.
 
+## Where it lives
+
+Production is **https://mbgrowth.marketbetter.xyz**, a CNAME to Vercel on the `marketbetter.xyz`
+zone at GoDaddy. `market-better-ghl-meta.vercel.app` still serves the same deployment.
+
+It was briefly on `mbstudio.marketbetter.xyz`. That name went with Market Better Studio when the
+brand was retired, and no longer resolves — anything still pointing at it is broken.
+
+Pushing to `master` deploys automatically through the GitHub integration.
+
 ## Before launch
 
-Two values are intentionally left empty and must be filled in:
+| What | Where | State |
+|---|---|---|
+| Meta pixel id | `META_PIXEL_ID` in `references/mb-funnel.js` | `2111555462783713` |
+| Calendar booking redirect | GHL calendar → on booking confirmation → `https://mbgrowth.marketbetter.xyz/thank-you?booked=1` | **Still on the old domain — must be repointed** |
+| Domain verification | Meta Business Portfolio → `mbgrowth.marketbetter.xyz` | Pending |
 
-| What | Where |
-|---|---|
-| Meta pixel id | `META_PIXEL_ID` in `references/mb-funnel.js` |
-| Calendar booking redirect | In GHL: calendar → on booking confirmation → `https://<domain>/thank-you?booked=1` |
-
-An empty pixel id makes every `track()` call a no-op, so nothing fires at a pixel that doesn't
-exist yet. The calendar redirect is the reliable way to reach the thank-you page; the booking page
-also listens for the widget's confirmation message as a second route.
+The calendar redirect is the reliable way to reach the thank-you page; the booking page also
+listens for the widget's confirmation message as a second route. Without domain verification in
+Meta, Aggregated Event Measurement throttles the pixel and events get dropped.
 
 `Schedule` only fires for a visitor who actually booked — either the booking page saw the
 confirmation, or the calendar redirected with `?booked=1`. Firing it on every page view would
