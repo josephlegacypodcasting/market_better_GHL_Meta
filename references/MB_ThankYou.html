@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>You're Booked — Market Better</title>
   <meta name="robots" content="noindex" />
+  <!-- Meta domain verification. Must stay static HTML inside <head>:
+       Meta fails the check if the tag is injected by JavaScript. -->
+  <meta name="facebook-domain-verification" content="c0y70bgkyt3mi63b49xvsokcacu5ox" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -17,6 +20,22 @@
           document.documentElement.setAttribute('data-theme', stored);
         }
       } catch (e) {}
+    })();
+  </script>
+  <script>
+    /* GHL's calendar can run its booking redirect inside the iframe instead of
+       the top window, which would render this page in a 760px box on top of
+       the booking page. Escaping here, before anything else loads, also stops
+       the pixel firing twice — once framed, once at the top. No-op when the
+       redirect already hit the top window. */
+    (function () {
+      if (window.top === window.self) return;
+      try {
+        window.top.location.replace(window.location.href);
+      } catch (e) {
+        // Parent is cross-origin and cannot be driven; render framed instead.
+        console.warn('[thank-you] framed and unable to break out:', e);
+      }
     })();
   </script>
   <link rel="stylesheet" href="mb-funnel.css" />
