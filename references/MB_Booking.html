@@ -236,11 +236,19 @@
       document.body.appendChild(embed);
 
       /* ── Booking confirmation ──
-         Primary path is GHL's own calendar setting: "On booking confirmation →
-         redirect to <origin>/thank-you?booked=1". The listener below is a
-         second route for the case where that redirect isn't configured — the
-         widget posts a message to the parent when the appointment is created. */
+         Two routes reach the thank-you page, and in practice this listener wins:
+         the widget posts a message to the parent as soon as the appointment is
+         created, before GHL's own "redirect on booking confirmation" setting
+         fires. That ordering matters, because only this path sends the
+         appointment_booked webhook. GHL's redirect stays configured as the
+         fallback for when the message never arrives. */
       var handled = false;
+
+      /* Pretty route in production. Locally there are no Vercel rewrites, so
+         the file has to be addressed directly. */
+      var THANK_YOU = /^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)
+        ? 'MB_ThankYou.html?booked=1'
+        : '/thank-you?booked=1';
 
       function onBooked() {
         if (handled) return;
@@ -264,7 +272,7 @@
           console.error('[booking] webhook failed:', err);
         });
 
-        window.location.href = 'MB_ThankYou.html?booked=1';
+        window.location.href = THANK_YOU;
       }
 
       window.addEventListener('message', function (event) {
