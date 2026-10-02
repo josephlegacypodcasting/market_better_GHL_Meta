@@ -18,6 +18,9 @@
     { "source": "/assets/:path*", "destination": "/references/assets/:path*" },
     { "source": "/mb-funnel.css", "destination": "/references/mb-funnel.css" },
     { "source": "/mb-funnel.js", "destination": "/references/mb-funnel.js" },
+    { "source": "/favicon.ico", "destination": "/references/favicon.ico" },
+    { "source": "/apple-touch-icon.png", "destination": "/references/apple-touch-icon.png" },
+
     { "source": "/mb-logo.png", "destination": "/references/mb-logo.png" },
     { "source": "/mb-logo-dark.png", "destination": "/references/mb-logo-dark.png" },
 
