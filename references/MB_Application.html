@@ -69,13 +69,18 @@
       color: var(--ink-soft);
     }
 
+    /* Sized to hold the whole sentence on one line at desktop width. The text
+       needs ~913px and the box gives 944px, so there is room for font
+       rendering to differ by machine. Lengthening the copy or growing the
+       type will push it onto a second line; it wraps rather than overflowing,
+       which is also what happens on narrow screens by design. */
     .dashboard-note {
       margin-top: 2rem;
-      padding: 1.1rem 1.25rem;
+      padding: 1.1rem 1rem;
       border: 0.5px solid var(--border);
       border-radius: 8px;
       background: var(--card);
-      font-size: 13.5px;
+      font-size: 13px;
       line-height: 1.7;
       color: var(--ink-soft);
       text-align: center;
@@ -457,7 +462,7 @@
       </div>
 
       <p class="dashboard-note">
-        All 4 steps report into <strong>one dashboard</strong>: cost per booked call, cost per acquisition, and return on investment in real dollars. Not impressions. Not engagement rate. Not vanity metrics.
+        All 4 steps report into <strong>one dashboard</strong>: cost per booked call and return on investment in real dollars. Not impressions. Not engagement rate. Not vanity metrics.
       </p>
     </section>
 
