@@ -278,6 +278,10 @@
     @media (max-width: 860px) {
       .headline { font-size: 32px; }
       .steps { grid-template-columns: 1fr; }
+      /* The single line is only reachable above ~1024px. Below it the note
+         wraps whatever happens, so the type goes back up to the size the rest
+         of the page uses — most of this traffic is on a phone. */
+      .dashboard-note { font-size: 13.5px; padding: 1.1rem 1.25rem; }
     }
 
     @media (max-width: 540px) {
