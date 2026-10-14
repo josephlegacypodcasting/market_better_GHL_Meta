@@ -63,9 +63,14 @@
       overflow: hidden;
     }
 
+    /* GHL's form_embed.js measures the widget and writes an inline height as
+       the visitor moves between the date, the time and the form. This is only
+       a floor for the moment before that lands, and for the case where the
+       script never loads — it has to stay under what the widget actually
+       asks for, or it wins and leaves dead space below the calendar. */
     #booking-frame {
       width: 100%;
-      min-height: 760px;
+      min-height: 600px;
       border: none;
       display: block;
       border-radius: 8px;
@@ -119,6 +124,10 @@
     @media (max-width: 540px) {
       .headline { font-size: 26px; }
       .calendar-shell { padding: 0.35rem; }
+      /* Deliberately generous. The resize message was not observed arriving on
+         a phone, and with scrolling off a frame that is too short clips the
+         widget with no way to reach the rest. Empty space below it is the
+         cheaper mistake. */
       #booking-frame { min-height: 900px; }
     }
   </style>
@@ -163,6 +172,7 @@
       <iframe
         id="booking-frame"
         title="Book your call with Market Better"
+        allow="payment"
         scrolling="no"
         loading="eager"></iframe>
     </div>
