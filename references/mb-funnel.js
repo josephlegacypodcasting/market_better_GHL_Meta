@@ -17,12 +17,17 @@
      event in Ads Manager is "Submit Application", fired from the booking page. */
   var META_PIXEL_ID = '2111555462783713';
 
-  /* Both GHL webhooks. The application posts to the first, a confirmed booking
-     to the second. Same endpoints the Studio funnel uses; the payload's
-     campaign_name and system_id are what tell the two funnels apart. */
+  /* GHL webhooks. A submitted application goes to every endpoint in the list,
+     each receiving the same full payload; a confirmed booking goes to one.
+     The first application endpoint is the one the Studio funnel also uses —
+     payload's campaign_name and system_id are what tell the two funnels
+     apart there. */
   var WEBHOOKS = {
-    application: 'https://services.leadconnectorhq.com/hooks/uE8iQeezklYV7hJanEiE/webhook-trigger/a9f73de4-fc83-44fe-86ca-7f25775ecad6',
-    booking:     'https://services.leadconnectorhq.com/hooks/uE8iQeezklYV7hJanEiE/webhook-trigger/cb4a54c4-508b-4071-8350-c3f657fbb175'
+    application: [
+      'https://services.leadconnectorhq.com/hooks/uE8iQeezklYV7hJanEiE/webhook-trigger/a9f73de4-fc83-44fe-86ca-7f25775ecad6',
+      'https://services.leadconnectorhq.com/hooks/uE8iQeezklYV7hJanEiE/webhook-trigger/18fe0659-ab90-424f-9994-104db453dae9'
+    ],
+    booking: 'https://services.leadconnectorhq.com/hooks/uE8iQeezklYV7hJanEiE/webhook-trigger/cb4a54c4-508b-4071-8350-c3f657fbb175'
   };
 
   var CALENDAR_URL = 'https://api.leadconnectorhq.com/widget/booking/vJSj6VX7HHYfmAeL6dUI';
@@ -171,6 +176,27 @@
     });
   }
 
+  /* Sends the same payload to one or several endpoints and resolves as long as
+     one of them took it. A lead who filled in the whole form should not be
+     bounced back to the page because a second endpoint happened to be down. */
+  function postAll(urls, payload) {
+    var list = [].concat(urls);
+
+    return Promise.allSettled(list.map(function (url) {
+      return post(url, payload);
+    })).then(function (results) {
+      var delivered = 0;
+
+      results.forEach(function (result, i) {
+        if (result.status === 'fulfilled') delivered++;
+        else console.error('[webhook] failed:', list[i], result.reason);
+      });
+
+      if (!delivered) throw new Error('every webhook failed');
+      return delivered;
+    });
+  }
+
   /* Merges the campaign constants, the captured attribution and the step's own
      fields into one flat object, which is what GHL's inbound webhook expects. */
   function buildPayload(fields) {
@@ -214,6 +240,7 @@
     hasBooked: hasBooked,
     track: track,
     post: post,
+    postAll: postAll,
     buildPayload: buildPayload
   };
 

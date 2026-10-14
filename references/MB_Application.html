@@ -674,7 +674,7 @@
           consent_type: 'Email, phone and SMS'
         }));
 
-        MBFunnel.post(MBFunnel.WEBHOOKS.application, payload)
+        MBFunnel.postAll(MBFunnel.WEBHOOKS.application, payload)
           .then(function () {
             MBFunnel.saveLead(lead);
             // SubmitApplication fires on the booking page, per the campaign
