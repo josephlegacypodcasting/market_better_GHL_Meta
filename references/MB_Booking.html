@@ -63,14 +63,14 @@
       overflow: hidden;
     }
 
-    /* GHL's form_embed.js measures the widget and writes an inline height as
-       the visitor moves between the date, the time and the form. This is only
-       a floor for the moment before that lands, and for the case where the
-       script never loads — it has to stay under what the widget actually
-       asks for, or it wins and leaves dead space below the calendar. */
+    /* Tall enough to hold the widget on its own. GHL's form_embed.js writes an
+       inline height when it manages to measure the frame, but that is not
+       reliable, so this floor is what the page actually renders at most of the
+       time. Lowering it to shave the gap under the calendar is not worth the
+       risk: scrolling is off, so a frame that is too short clips the widget. */
     #booking-frame {
       width: 100%;
-      min-height: 600px;
+      min-height: 760px;
       border: none;
       display: block;
       border-radius: 8px;
@@ -246,6 +246,30 @@
       embed.src = 'https://link.msgsndr.com/js/form_embed.js';
       embed.async = true;
       document.body.appendChild(embed);
+
+      /* That script measures the frame by first moving it off-screen —
+         opacity 0, visibility hidden, left -9999px — and is supposed to put it
+         back. The restore does not always run, and when it does not the lead
+         is left staring at an empty box on the one page where they book, with
+         nothing in the console to show for it.
+
+         So the page stops trusting it: if the frame is still hidden shortly
+         after load, put it back. The CSS floor then carries the height. This
+         only fires on the broken path, so a successful measure is untouched. */
+      setTimeout(function () {
+        var cs = window.getComputedStyle(frame);
+        var offScreen = frame.getBoundingClientRect().left < -1000;
+
+        if (cs.opacity !== '0' && cs.visibility !== 'hidden' && !offScreen) return;
+
+        console.warn('[booking] calendar left hidden by form_embed.js — restoring');
+        frame.style.opacity = '1';
+        frame.style.visibility = 'visible';
+        frame.style.pointerEvents = 'auto';
+        frame.style.position = 'relative';
+        frame.style.left = 'auto';
+        frame.style.display = 'block';
+      }, 2500);
 
       /* ── Booking confirmation ──
          Two routes reach the thank-you page, and in practice this listener wins:
