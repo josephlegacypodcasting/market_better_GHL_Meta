@@ -25,7 +25,7 @@
   var WEBHOOKS = {
     application: [
       'https://services.leadconnectorhq.com/hooks/uE8iQeezklYV7hJanEiE/webhook-trigger/a9f73de4-fc83-44fe-86ca-7f25775ecad6',
-      'https://services.leadconnectorhq.com/hooks/uE8iQeezklYV7hJanEiE/webhook-trigger/18fe0659-ab90-424f-9994-104db453dae9'
+      'https://services.leadconnectorhq.com/hooks/uE8iQeezklYV7hJanEiE/webhook-trigger/b3b1973f-8647-4204-8934-4d38c76c62f4'
     ],
     booking: 'https://services.leadconnectorhq.com/hooks/uE8iQeezklYV7hJanEiE/webhook-trigger/cb4a54c4-508b-4071-8350-c3f657fbb175'
   };
